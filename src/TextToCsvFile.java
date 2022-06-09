@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.charset.Charset;
 
-public class TextToCsvFile {
+public class TextToCsvFile implements TextToCsvFileAble {
 
     private static final String WORKSPACE = "C:\\green_workspace\\orangefield01\\zipcode-test-practice\\";
     private static final String RESOURCE = WORKSPACE + "resource\\";
@@ -58,11 +58,12 @@ public class TextToCsvFile {
         return -1;
     }
 
-    // public int process(String readFilePath, String writeFilePath) {
-    // String data = readFile(readFilePath, "UTF-8");
-    // String csvData = convertCsv(data, "^");
+    // 부모(TextToCsvFileAble)의 메서드가 오버라이드 됨
+    public int process(String readFilePath, String writeFilePath) {
+        String data = readFile(readFilePath, "UTF-8");
+        String csvData = convertCsv(data, "^");
 
-    // return writeFile(writeFilePath, "UTF-8", csvData);
-    // }
+        return writeFile(writeFilePath, "UTF-8", csvData);
+    }
 
 }
